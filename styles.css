@@ -129,6 +129,16 @@ center {
   border-bottom: 5px solid #187b9b;
   margin: 10px 0px 15px 0px;
   }
+
+/*Consistent paragraph spacing inside content boxes.*/
+.box p {
+  margin: 0 0 0.75rem 0;
+  line-height: 1.45;
+}
+
+.box p:last-child {
+  margin-bottom: 0;
+}
   
 /*Prevent overflow of large images in main text areas.*/
 .box img {
