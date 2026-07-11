@@ -139,6 +139,11 @@ center {
 .box p:last-child {
   margin-bottom: 0;
 }
+
+.box a {
+  color: #0c5a72;
+  text-decoration: underline;
+}
   
 /*Prevent overflow of large images in main text areas.*/
 .box img {
