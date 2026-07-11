@@ -43,20 +43,24 @@
             </div>
         </div>
 
-        <div class="wrapper-2">
+        <div class="wrapper-2 project-layout">
             <div class="main">
                 <div class="box">
-                    <h1 id="section-1">Welcome to my Website!</h1>
+                    <h1 id="section-1">Project Archive</h1>
                     <div class="inner">
-                        <p>Take a look at whatever you want now, click on the titles to access the repositories if interested:</p>
+                        <p>Click a project title to visit its repository. Each project is labelled by its focus and tools.</p>
                     </div>
                 </div>
-                <div class="box">
+                <h2 class="project-group" id="hardware-projects">Hardware &amp; Game Projects</h2>
+                <div class="box project-card">
                     <h2>
                         <a href="https://github.com/Emefedez/ESP32Calc" title="ESP32Calc">
                             <img src="./images/static/logos/projects/ESP32CALC_logo.png" alt="ESP32Calc" />
                         </a>
                     </h2>
+                    <div class="project-tags" aria-label="ESP32Calc tags">
+                        <span class="tag">Hardware</span>
+                    </div>
                     <p>A <strong>FOSS</strong> custom-designed calculator built from scratch for <a
                             href="https://fallout.hackclub.com/">Fallout</a>.</p>
 
@@ -81,38 +85,16 @@
                     </div>
                 </div>
 
-                <div class="box">
-                    <h2>
-                        <a href="https://github.com/Emefedez/spectre-editor-demo" title="SpectreV2Demo">
-                            <img src="./images/static/logos/projects/SpectreV2Demo.png" alt="Spectre-V2 Demo" />
-                        </a>
-                    </h2>
-
-                    <p><strong>Context:</strong></p>
-                    <p><em>x86</em> devices vulnerable to the Spectre exploit are still in use in current times. This exploit
-                        being older unfortunately does not make it non-existant, and it is still quite easy to implement
-                        a very silent and potentially dangerous program that takes advantage of it.</p>
-                    <p>Here is a little project that showcases a simplified text editor being cracked by a Spectre-v2
-                        exploit on a modern Linux kernel.</p>
-                    <p>Special thanks to Jesús Ferreira Rodríguez as he greatly helped me understand the volatile
-                        assembly required to build this.</p>
-
-                    <video controls width="360">
-                        <source src="https://private-user-images.githubusercontent.com/160399937/567345293-10275277-d993-44f9-89b4-9ac2060b26df.mp4?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODM3NjQ5NTAsIm5iZiI6MTc4Mzc2NDY1MCwicGF0aCI6Ii8xNjAzOTk5MzcvNTY3MzQ1MjkzLTEwMjc1Mjc3LWQ5OTMtNDRmOS04OWI0LTlhYzIwNjBiMjZkZi5tcDQ_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwNzExJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDcxMVQxMDEwNTBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1kYzUzMTExYTQ5OTcxYjFhZDE2ZTM3MzdlNDBlZmUzNDQwN2E5MWJkZjA4MzRjMWIyZTdiMzNiMjZhZjJmMGZkJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9dmlkZW8lMkZtcDQifQ.92Ab8rnMM9Cu8FZ4JgpjOsCZlTZPaVpAQatELRTb2Xg" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-
-                    <div class="inner">
-
-                    </div>
-                </div>
-
-                <div class="box">
+                <div class="box project-card">
                     <h2>
                         <a href="https://github.com/Pegoku/buckshot-roulette-irl" title="SoupShot Roulette">
                             <img src="./images/static/logos/projects/Soupshot_logo.png" alt="SoupShot" />
                         </a>
                     </h2>
+                    <div class="project-tags" aria-label="SoupShot Roulette tags">
+                        <span class="tag">Hardware</span>
+                        <span class="tag">Game</span>
+                    </div>
 
                     <p><strong>Context:</strong></p>
                     <p><em>First hackathon project!!</em></p>
@@ -123,39 +105,79 @@
 
                     <img src="https://github.com/Pegoku/buckshot-roulette-irl/raw/main/zine/zine.png" alt="zine"
                         width="360" />
-                    <div class="inner">
-
-                    </div>
                 </div>
-            </div>
 
-
-
-            <div class="sidebar-left">
-                <div class="box">
-                    <h3>This is you!</h3>
-                    <div class="inner">
-                        <p>
-                            <img src="./images/GIFs/computer_surfing_lc.gif" alt="Surfing the web" />
-                        </p>
+                <h2 class="project-group" id="security-projects">Security Research</h2>
+                <div class="box project-card">
+                    <h2>
+                        <a href="https://github.com/Emefedez/spectre-editor-demo" title="SpectreV2Demo">
+                            <img src="./images/static/logos/projects/SpectreV2Demo.png" alt="Spectre-V2 Demo" />
+                        </a>
+                    </h2>
+                    <div class="project-tags" aria-label="Spectre-v2 Demo tags">
+                        <span class="tag">Security</span>
+                        <span class="tag">Demo</span>
                     </div>
+
+                    <p><strong>Context:</strong></p>
+                    <p><em>x86</em> devices vulnerable to the Spectre exploit are still in use in current times. This exploit
+                        being older unfortunately does not make it non-existant, and it is still quite easy to implement
+                        a very silent and potentially dangerous program that takes advantage of it.</p>
+                    <p>Here is a little project that showcases a simplified text editor being cracked by a Spectre-v2
+                        exploit on a modern Linux kernel.</p>
+                    <p>Special thanks to Jesús Ferreira Rodríguez as he greatly helped me understand the volatile
+                        assembly required to build this.</p>
+
+                    <video controls>
+                        <source src="./images/videos/SpectreV2DemoVideo.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <h2 class="project-group" id="software-demos">Software Demos</h2>
+                <div class="box project-card">
+                    <h2>
+                        <a href="https://github.com/Emefedez/Shitdows-XstORe" title="Shitdows XstORe">
+                            <img src="./images/static/logos/projects/ShitDows.png" alt="Shitdows XstORe" />
+                        </a>
+                    </h2>
+                    <div class="project-tags" aria-label="Shitdows XstORe tags">
+                        <span class="tag">Demo</span>
+                    </div>
+
+                    <p>A Java desktop client for finding and downloading UWP app packages on older or restricted Windows installations.</p>
+
+                    <p><strong>Context:</strong></p>
+                    <p>Older IoT and "bloat-free" versions of Windows have no support for the Windows Store. This is a simple replacement.</p>
+                    <p>Using JavaFX and text files, I retrieve links from RG-Adguard and serve them like app downloads.</p>
+                    <p>My first GUI done with no AI, perhaps it is quirky but I really dig the look.</p>
+
+                    <img class="project-preview" src="./images/projects/shitdows/preview.png"
+                        alt="Shitdows XstORe application window" />
+
+                    <video class="project-demo" controls preload="metadata">
+                        <source src="./images/projects/shitdows/demo.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
 
             <div class="sidebar-right">
                 <div class="box">
-                    <h3>Blog Posts</h3>
+                    <h3>Project Index</h3>
                     <div class="inner">
                         <ol>
-                            <li><a href="#section-1">PLACEHOLDER</a></li>
-                            <li><a href="#section-2">PLACEHOLDER</a></li>
-                            <li><a href="#section-3">PLACEHOLDER</a></li>
+                            <li><a href="#hardware-projects">Hardware / Game</a></li>
+                            <li><a href="#security-projects">Security / Demo</a></li>
+                            <li><a href="#software-demos">Software Demo</a></li>
                         </ol>
                     </div>
                 </div>
                 <div class="box">
+                    <h3>Currently Online</h3>
                     <div class="inner">
-                        <img src="./images/GIFs/comp_computer_mouse_e_a_lw.gif" alt="Mouse maze" />
+                        <img class="project-sidebar-gif" src="./images/GIFs/computer_surfing_lc.gif"
+                            alt="Surfing the web" />
                     </div>
                 </div>
             </div>
@@ -166,3 +188,35 @@
 </body>
 
 </html>
+
+
+<!--
+                PROJECT TEMPLATE
+                Copy this block above the closing </div> for .main, then replace every [placeholder].
+
+                <h2 class="project-group" id="[category]-projects">[Category]</h2>
+                <div class="box project-card">
+                    <h2>
+                        <a href="[repository URL]" title="[Project name]">
+                            <img src="[logo image path]" alt="[Project name]" />
+                        </a>
+                    </h2>
+                    <div class="project-tags" aria-label="[Project name] tags">
+                        <span class="tag">Hardware</span>
+                        <span class="tag">Game</span>
+                        <span class="tag">Security</span>
+                        <span class="tag">Demo</span>
+                    </div>
+
+                    <p><strong>Context:</strong></p>
+                    <p>[One-sentence description.]</p>
+                    <p>[Why you made it, what it does, and what you learned.]</p>
+
+                    <img src="[image or zine path]" alt="[Describe the image]" width="360" />
+
+                    <video controls>
+                        <source src="[optional demo video path]" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                -->

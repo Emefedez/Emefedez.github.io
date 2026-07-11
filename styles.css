@@ -15,6 +15,12 @@ body {
   color: white;
   font-family: sans-serif;
   font-size: 0.875em;
+  margin: 0;
+  overflow-x: hidden;
+  }
+
+*, *::before, *::after {
+  box-sizing: border-box;
   }
   
 center {
@@ -23,19 +29,22 @@ center {
   
 /*Contains everything*/
 .wrapper {
-  width: 1150px;
+  width: min(1150px, calc(100% - 24px));
   background: #12282f;
   margin: 0 auto;
   top: 0;
-  margin-top: -10px;
   border-left: 0px solid #12282f;
   border-right: 0px solid #12282f;  
-  margin-bottom: -10px;
   }
   
 /*Contains main and sidebar divs*/
 .wrapper-2 {
-  position: relative;
+  display: grid;
+  grid-template-columns: 200px minmax(0, 710px) 200px;
+  gap: 10px;
+  justify-content: center;
+  align-items: start;
+  padding: 0 10px;
 }
   
 /*Header and footer images*/
@@ -70,7 +79,11 @@ center {
 
 /*Container for top row of links.*/
 .links {
-  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 6px 16px;
+  padding: 5px 20px;
   padding-top: 3px;
   padding-bottom: 5px;
   }
@@ -84,8 +97,7 @@ center {
   font-weight: bold;
   font-size: 1.16em;
   padding: 5px;
-  margin-right: 10px;
-  margin-left: 10px;
+  margin: 0;
   border: 0px solid red;
   }
   
@@ -94,30 +106,25 @@ center {
   text-decoration: none;
   }
 
-/*These three classes are just for defining the boundaries and size of the main and sidebar columns. Most fancy styling goes in the 'box' class.*/
-.main, .sidebar-right {
-  display: inline-block;
-  }
-  
 .sidebar-left, .sidebar-right {
-  width: 200px;
-  position: absolute;
-  top: 0;
+  width: auto;
+  position: static;
   }
 
 .sidebar-left {
-  margin-left: 10px;
+  grid-column: 1;
+  grid-row: 1;
   }
   
 .main {
-  margin-left: 220px;
-  width: 710px;
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
   }
   
 .sidebar-right {
-  right: 0;
-  margin-right: 10px;
-  margin-left: 10px;
+  grid-column: 3;
+  grid-row: 1;
   }
   
 /*Box used for individual sections in the sidebar, center column, etc.*/
@@ -150,6 +157,76 @@ center {
   max-width: 100%;
   height: auto;
   }
+
+.box video {
+  display: block;
+  width: min(360px, 100%);
+  max-width: 100%;
+  height: auto;
+  margin: 1rem auto;
+  }
+
+.project-preview {
+  display: block;
+  width: min(520px, 100%);
+  height: auto;
+  margin: 1rem auto;
+  }
+
+.project-demo {
+  width: min(520px, 100%);
+  }
+
+.project-layout {
+  grid-template-columns: minmax(0, 1fr) 190px;
+  }
+
+.project-layout .main {
+  grid-column: 1;
+  grid-row: 1;
+  }
+
+.project-layout .sidebar-left {
+  display: none;
+  }
+
+.project-layout .sidebar-right {
+  grid-column: 2;
+  grid-row: 1;
+  }
+
+.project-group {
+  margin: 1.25rem 0 0.25rem;
+  color: #e2dcc1;
+  font-size: 1.1rem;
+  }
+
+.project-card h2 {
+  margin-bottom: 0.35rem;
+  }
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0 0 0.85rem;
+  }
+
+.tag {
+  border: 1px solid #187b9b;
+  background: #f4efd8;
+  color: #0c5a72;
+  font-size: 0.78rem;
+  font-weight: bold;
+  padding: 0.2rem 0.4rem;
+  }
+
+.project-sidebar-gif {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0.35rem auto 0.6rem;
+  }
   
 /***
   Not give any style rules by default. Move the padding from the 'box' class here if you want boxes with specially styled headers or images that 
@@ -159,51 +236,61 @@ center {
   
   }
   
-/* For narrow screens. Makes the sidebars narrower, and makes width of the 
- * center/main div 50% of the viewport width.
- */
-@media(max-width:1180px) {
+/* Compact screens use a single reading column in document order. */
+@media(max-width:920px) {
   .wrapper {
-    width: calc(440px + 50vw);
-    }
-  .main {
-    width: 50vw;
-    }
-  }
-  
-@media(max-width:910px) {
-  .wrapper {
-    width: calc(360px + 52vw);
-    }
-  .sidebar-left, .sidebar-right {
-    width: 160px;
-    }
-  .main {
-    margin-left: 180px;
-    width: 52vw;
-    }
-  }
-  
-/* Mobile compatibility. Puts everything into a standard vertical layout. */
-@media(orientation:portrait) {
-  .wrapper {
-    width: 96vw;
-    margin: 0 auto;
-    padding:0;
-    position: relative;
+    width: min(100%, calc(100% - 16px));
     }
   .wrapper-2 {
-    width: 94vw;
-    margin: 0 auto;
-    padding:0;
-    position: relative;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding: 0 8px;
     }
   .sidebar-left, .main, .sidebar-right {
     position: relative;
-    width: 92vw;
-    margin: 0.25rem 1vw;
+    grid-column: 1;
+    grid-row: auto;
+    width: auto;
+    margin: 0;
+    }
+  .project-layout .main, .project-layout .sidebar-right {
+    grid-column: 1;
+    grid-row: auto;
+    }
+  .project-layout .sidebar-right {
+    display: block;
     }
   .sidebar-left, .sidebar-right {
     font-size: 0.95em;
+    }
+  .header {
+    height: 140px;
+    }
+  .title {
+    padding: 12px 10px 8px;
+    }
+  .title img {
+    max-width: 100%;
+    height: auto;
+    }
+  .link img {
+    width: 104px;
+    }
+  }
+
+@media(max-width:420px) {
+  .links {
+    gap: 4px;
+    padding: 5px 8px;
+    }
+  .link {
+    padding: 3px;
+    }
+  .link img {
+    width: 92px;
+    }
+  .box {
+    padding: 5px 8px 0;
+    overflow-wrap: anywhere;
     }
   }
