@@ -202,7 +202,35 @@ center {
   }
 
 .project-card h2 {
+  margin-top: 0.25rem;
   margin-bottom: 0.35rem;
+  font-size: 1.35rem;
+  }
+
+.project-card h2 a {
+  color: #0c5a72;
+  text-decoration: none;
+  }
+
+.project-card h2 a:hover {
+  text-decoration: underline;
+  }
+
+.box-notes {
+  background: #dce7dc;
+  border-top-color: #2b745b;
+  border-bottom-color: #2b745b;
+  }
+
+.box-notes h2 a,
+.box-notes a {
+  color: #164d3c;
+  }
+
+.box-notes .tag {
+  border-color: #2b745b;
+  background: #edf5ef;
+  color: #164d3c;
   }
 
 .project-tags {
