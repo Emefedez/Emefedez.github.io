@@ -256,6 +256,52 @@ center {
   margin: 0.35rem auto 0.6rem;
   }
   
+/*NoteComplete page: single wide column with the embedded web app.*/
+.app-layout {
+  grid-template-columns: minmax(0, 1fr);
+  }
+
+.app-layout .main {
+  grid-column: 1;
+  }
+
+.app-actions {
+  text-align: center;
+  }
+
+.box a.app-button {
+  display: inline-block;
+  padding: 0.55rem 1.1rem;
+  background: #187b9b;
+  border: 2px solid #0c5a72;
+  color: white;
+  font-weight: bold;
+  font-size: 1.05rem;
+  text-decoration: none;
+  }
+
+.box a.app-button:hover {
+  background: #0c5a72;
+  }
+
+.app-hint {
+  font-size: 0.85rem;
+  text-align: center;
+  }
+
+.box.app-frame-box {
+  padding: 0;
+  }
+
+.app-frame {
+  display: block;
+  width: 100%;
+  height: max(560px, calc(100vh - 120px));
+  height: max(560px, calc(100dvh - 120px));
+  border: 0;
+  background: #f5f5f7;
+  }
+  
 /***
   Not give any style rules by default. Move the padding from the 'box' class here if you want boxes with specially styled headers or images that 
   don't follow the margins of the main text. (For an example of that: see skin #1.)
@@ -304,6 +350,9 @@ center {
   .link img {
     width: 104px;
     }
+  .link img.link-wide {
+    width: 138px;
+    }
   }
 
 @media(max-width:420px) {
@@ -316,6 +365,12 @@ center {
     }
   .link img {
     width: 92px;
+    }
+  .link img.link-wide {
+    width: 122px;
+    }
+  .app-frame {
+    height: max(480px, calc(100dvh - 80px));
     }
   .box {
     padding: 5px 8px 0;
