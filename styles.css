@@ -350,9 +350,6 @@ center {
   .link img {
     width: 104px;
     }
-  .link img.link-wide {
-    width: 138px;
-    }
   }
 
 @media(max-width:420px) {
@@ -365,9 +362,6 @@ center {
     }
   .link img {
     width: 92px;
-    }
-  .link img.link-wide {
-    width: 122px;
     }
   .app-frame {
     height: max(480px, calc(100dvh - 80px));
