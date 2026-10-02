@@ -1,4 +1,5 @@
-# Simple workflow for deploying static content to GitHub Pages
+# Deploys the site to GitHub Pages, with the NoteComplete web reader
+# (built from Emefedez/noteful-re) served under /notecomplete/.
 name: Deploy static content to Pages
 
 on:
@@ -6,8 +7,17 @@ on:
   push:
     branches: ["main"]
 
+  # Rebuild daily so /notecomplete/ picks up new noteful-re commits
+  schedule:
+    - cron: "17 4 * * *"
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      notecomplete_ref:
+        description: "noteful-re branch, tag or commit to build"
+        required: false
+        default: "main"
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -22,22 +32,82 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout site
+        uses: actions/checkout@v4
+        with:
+          path: site
+
+      - name: Checkout NoteComplete
+        uses: actions/checkout@v4
+        with:
+          repository: Emefedez/noteful-re
+          ref: ${{ inputs.notecomplete_ref || 'main' }}
+          path: noteful-re
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Cache Rust build
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: noteful-re
+
+      - name: Read wasm-bindgen version from Cargo.lock
+        id: bindgen
+        working-directory: noteful-re
+        run: |
+          version=$(python3 -c "import tomllib;print(next(p['version'] for p in tomllib.load(open('Cargo.lock','rb'))['package'] if p['name']=='wasm-bindgen'))")
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Install wasm-bindgen-cli
+        uses: taiki-e/install-action@v2
+        with:
+          tool: wasm-bindgen@${{ steps.bindgen.outputs.version }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build NoteComplete web reader
+        working-directory: noteful-re
+        run: python3 tools/build_web.py
+
+      - name: Assemble site
+        run: |
+          cp -r site _site
+          rm -rf _site/.git _site/.github
+          cp -r noteful-re/apps/reader _site/notecomplete
+          # Use pdf.js's legacy build so PDFs also render on older phone/desktop browsers
+          cp noteful-re/apps/reader/node_modules/pdfjs-dist/legacy/build/{pdf.mjs,pdf.worker.mjs} _site/notecomplete/vendor/pdfjs/build/
+          rm -rf _site/notecomplete/node_modules
+          echo "Built from noteful-re $(git -C noteful-re rev-parse --short HEAD)" > _site/notecomplete/VERSION.txt
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
   deploy:
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5

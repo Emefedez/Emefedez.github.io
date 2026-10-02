@@ -1,0 +1,86 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NoteComplete - Emefedez's Lair</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="header-shadow"></div>
+        </div>
+
+        <div class="title">
+            <h1>
+                <img src="./images/static/logos/NoteComplete.png" alt="NoteComplete" />
+            </h1>
+        </div>
+
+        <div class="links">
+            <div class="link">
+                <a href="./index.html" title="Landing">
+                    <img src="./images/static/logos/Landing.png" alt="Landing" width="128"
+                        style="vertical-align: middle;" />
+                </a>
+            </div>
+            <div class="link">
+                <a href="./projects.html" title="Projects">
+                    <img src="./images/static/logos/Projects.png" alt="Projects" width="128"
+                        style="vertical-align: middle;" />
+                </a>
+            </div>
+            <div class="link">
+                <a href="./notecomplete.html" title="NoteComplete">
+                    <img src="./images/static/logos/NoteComplete.png" alt="NoteComplete" width="128"
+                        style="vertical-align: middle;" />
+                </a>
+            </div>
+            <div class="link">
+                <a href="https://github.com/Emefedez" title="GitHub">
+                    <img src="./images/static/logos/GitHub.png" alt="GitHub" width="128"
+                        style="vertical-align: middle;" />
+                </a>
+            </div>
+        </div>
+
+        <div class="wrapper-2 app-layout">
+            <div class="main">
+                <div class="box">
+                    <h1 id="section-1">NoteComplete</h1>
+                    <div class="inner">
+                        <p>
+                            A reader and editor for <strong>Noteful</strong> notes, running entirely in your browser
+                            on a Rust core compiled to WebAssembly. Open a <code>.noteful</code> file, PDF or image
+                            from your phone or computer: files are processed on your device and never uploaded.
+                        </p>
+                        <p>
+                            Source and docs: <a href="https://github.com/Emefedez/noteful-re">noteful-re</a>.
+                            Native <code>.noteful</code> export is still experimental.
+                        </p>
+                        <p class="app-actions">
+                            <a class="app-button" href="./notecomplete/" title="Open NoteComplete full screen">
+                                Open full screen
+                            </a>
+                        </p>
+                        <p class="app-hint">
+                            On a phone, full screen works best. From there you can also add it to your home screen
+                            and use it offline.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="box app-frame-box">
+                    <iframe class="app-frame" src="./notecomplete/" title="NoteComplete"
+                        allow="fullscreen; clipboard-write" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="footer"></div>
+    </div>
+</body>
+
+</html>
