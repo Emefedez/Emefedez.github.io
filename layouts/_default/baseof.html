@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ if and .Title (not .IsHome) }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
+    <link href="/styles.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="/site.js" defer></script>
+</head>
+<body>
+    <div class="wrapper{{ if eq .Section "projects" }} wrapper-projects{{ end }}">
+        <div class="header">
+            <div class="header-shadow"></div>
+        </div>
+
+        <div class="title">
+            <h1>
+                <img
+                    src="{{ default "/images/GIFs/logos/EmefedezLair.gif" .Params.banner_logo }}"
+                    alt="{{ default "Emefedez Lair" .Params.banner_alt }}"
+                    decoding="async"
+                />
+            </h1>
+        </div>
+
+        <div class="links">
+            <div class="link">
+                <a href="/index.html" title="Landing">
+                    <img src="/images/static/logos/Landing.webp" alt="Landing" width="128" height="39"
+                        style="vertical-align: middle;" decoding="async" />
+                </a>
+            </div>
+            <div class="link">
+                <a href="/projects.html" title="Projects">
+                    <img src="/images/static/logos/Projects.webp" alt="Projects" width="128" height="39"
+                        style="vertical-align: middle;" decoding="async" />
+                </a>
+            </div>
+            <div class="link">
+                <a href="https://github.com/Emefedez" title="GitHub">
+                    <img src="/images/static/logos/GitHub.webp" alt="GitHub" width="128" height="29"
+                        style="vertical-align: middle;" decoding="async" />
+                </a>
+            </div>
+        </div>
+
+        {{ block "main" . }}{{ end }}
+
+        <br />
+        <div class="footer"></div>
+    </div>
+
+    <div id="lightbox" class="lightbox" hidden aria-modal="true" role="dialog" aria-label="Image preview">
+        <button type="button" class="lightbox-close" aria-label="Close preview">&times;</button>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="" />
+    </div>
+</body>
+</html>

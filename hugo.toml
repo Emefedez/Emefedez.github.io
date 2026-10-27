@@ -1,0 +1,15 @@
+baseURL = "https://emefedez.github.io/"
+locale = "en-us"
+title = "Emefedez's Lair"
+uglyURLs = true
+disableKinds = ["taxonomy", "term", "RSS"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[imaging]
+  resampleFilter = "Lanczos"
+  [imaging.webp]
+    quality = 82

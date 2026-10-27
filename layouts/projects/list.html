@@ -1,0 +1,157 @@
+{{ define "main" }}
+{{- $sorted := sort .Pages "Weight" "asc" -}}
+{{- $sorted = sort $sorted "Params.category_weight" "asc" -}}
+
+<div class="wrapper-2 project-layout">
+    <div class="main">
+        <div class="box">
+            <h1 id="section-1">{{ .Title }}</h1>
+            <div class="inner">
+                {{ .Content }}
+            </div>
+        </div>
+
+        <div class="project-grid" id="project-grid">
+            {{- $seenCategories := slice -}}
+            {{- range $sorted -}}
+                {{- $catID := default "hardware" .Params.category_id -}}
+                {{- $isFirstInCat := not (in $seenCategories $catID) -}}
+                {{- if $isFirstInCat -}}
+                    {{- $seenCategories = $seenCategories | append $catID -}}
+                {{- end -}}
+
+                <article
+                    class="box project-card box-{{ $catID }}"
+                    data-category="{{ $catID }}"
+                    {{ if $isFirstInCat }}id="group-{{ $catID }}"{{ end }}
+                >
+                    <div class="project-group-badge">
+                        <span class="cat-swatch swatch-{{ $catID }}" aria-hidden="true"></span>
+                        <span>{{ .Params.category }}</span>
+                    </div>
+
+                    <h2>
+                        {{- if .Params.repo_url -}}
+                            <a href="{{ .Params.repo_url }}" title="{{ default .Title .Params.link_title }}">
+                                {{- if .Params.logo -}}
+                                    <img src="{{ .Params.logo }}" alt="{{ default .Title .Params.logo_alt }}" loading="lazy" decoding="async" />
+                                {{- else -}}
+                                    {{ .Title }}
+                                {{- end -}}
+                            </a>
+                        {{- else -}}
+                            {{- if .Params.logo -}}
+                                <img src="{{ .Params.logo }}" alt="{{ default .Title .Params.logo_alt }}" loading="lazy" decoding="async" />
+                            {{- else -}}
+                                {{ .Title }}
+                            {{- end -}}
+                        {{- end -}}
+                    </h2>
+
+                    {{- $cardTitle := .Title -}}
+                    {{- with .Params.tags -}}
+                    <div class="project-tags" aria-label="{{ $cardTitle }} tags">
+                        {{- range . -}}
+                            <span class="tag">{{ . }}</span>
+                        {{- end -}}
+                    </div>
+                    {{- end -}}
+
+                    <div class="project-body">
+                        {{ .Content }}
+                    </div>
+
+                    {{- if .Params.image -}}
+                        {{- $res := resources.Get .Params.image -}}
+                        {{- if $res -}}
+                            {{- $targetW := default 360 .Params.image_width -}}
+                            {{- $retinaW := mul $targetW 2 -}}
+                            {{- $thumb := $res.Resize (printf "%dx webp q82" $retinaW) -}}
+                            {{- $full := $res -}}
+                            {{- if ne $res.MediaType.SubType "webp" -}}
+                                {{- $full = $res.Process "webp q88" -}}
+                            {{- end -}}
+                            <div class="project-media">
+                                <img
+                                    class="lazy-img {{ default "project-zine" .Params.image_class }}"
+                                    src="{{ $thumb.RelPermalink }}"
+                                    data-zoom-src="{{ $full.RelPermalink }}"
+                                    alt="{{ default .Title .Params.image_alt }}"
+                                    width="{{ $targetW }}"
+                                    height="{{ div (mul $thumb.Height $targetW) $thumb.Width }}"
+                                    loading="lazy"
+                                    decoding="async"
+                                    title="Click to enlarge"
+                                />
+                            </div>
+                        {{- else -}}
+                            <div class="project-media">
+                                <img
+                                    class="lazy-img {{ default "project-zine" .Params.image_class }}"
+                                    src="{{ .Params.image }}"
+                                    alt="{{ default .Title .Params.image_alt }}"
+                                    {{ with .Params.image_width }}width="{{ . }}"{{ end }}
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            </div>
+                        {{- end -}}
+                    {{- end -}}
+
+                    {{- if .Params.video -}}
+                        <div class="project-media">
+                            <video
+                                class="{{ default "" .Params.video_class }}"
+                                controls
+                                preload="none"
+                                {{ with .Params.video_poster }}poster="{{ . }}"{{ end }}
+                            >
+                                <source src="{{ .Params.video }}" type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    {{- end -}}
+
+                    {{- with .Params.footer_note -}}
+                        <div class="inner project-footer-note">
+                            <p>{{ . | safeHTML }}</p>
+                        </div>
+                    {{- end -}}
+                </article>
+            {{- end -}}
+        </div>
+    </div>
+
+    <div class="sidebar-right">
+        <div class="box">
+            <h3>Project Index</h3>
+            <div class="inner">
+                <ol class="project-index-list">
+                    {{- $listedCats := slice -}}
+                    {{- range $sorted -}}
+                        {{- $catID := default "hardware" .Params.category_id -}}
+                        {{- if not (in $listedCats $catID) -}}
+                            {{- $listedCats = $listedCats | append $catID -}}
+                            <li>
+                                <a href="#group-{{ $catID }}" data-category-jump="{{ $catID }}">
+                                    <span class="cat-swatch swatch-{{ $catID }}" aria-hidden="true"></span>
+                                    {{ default .Params.category .Params.category_short }}
+                                </a>
+                            </li>
+                        {{- end -}}
+                    {{- end -}}
+                </ol>
+            </div>
+        </div>
+        <div class="box">
+            <h3>Currently Online</h3>
+            <div class="inner">
+                <img class="project-sidebar-gif"
+                    src="{{ default "/images/GIFs/computer_surfing_lc.gif" .Params.sidebar_gif }}"
+                    alt="{{ default "Surfing the web" .Params.sidebar_gif_alt }}"
+                    width="156" height="125" decoding="async" />
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}
