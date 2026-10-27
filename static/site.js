@@ -27,7 +27,34 @@
     }
   });
 
-  // 3. Click-to-zoom lightbox for high-res zines and project previews
+  // 3. Project card expand / collapse sliver button
+  const updateCardOverflow = () => {
+    document.querySelectorAll(".project-card").forEach((card) => {
+      if (card.classList.contains("is-expanded")) return;
+      const collapsible = card.querySelector(".project-collapsible");
+      if (!collapsible) return;
+      const overflows = collapsible.scrollHeight > collapsible.clientHeight + 8;
+      card.classList.toggle("is-short", !overflows);
+    });
+  };
+
+  document.querySelectorAll(".project-card").forEach((card) => {
+    const btn = card.querySelector(".project-expand-btn");
+    const label = card.querySelector(".expand-label");
+    if (!btn || !label) return;
+
+    btn.addEventListener("click", () => {
+      const expanded = card.classList.toggle("is-expanded");
+      btn.setAttribute("aria-expanded", expanded ? "true" : "false");
+      label.textContent = expanded ? "▲ Collapse" : "▼ Expand";
+      if (!expanded) updateCardOverflow();
+    });
+  });
+
+  updateCardOverflow();
+  window.addEventListener("resize", updateCardOverflow);
+
+  // 4. Click-to-zoom lightbox for high-res zines and project previews
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
   if (lightbox && lightboxImg) {
@@ -50,7 +77,7 @@
     });
   }
 
-  // 4. Sidebar category jump + adjacent group card highlight
+  // 5. Sidebar category jump + adjacent group card highlight
   const jumpLinks = document.querySelectorAll("[data-category-jump]");
   jumpLinks.forEach((link) => {
     link.addEventListener("click", (e) => {

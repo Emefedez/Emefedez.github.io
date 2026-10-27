@@ -57,66 +57,74 @@
                     </div>
                     {{- end -}}
 
-                    <div class="project-body">
-                        {{ .Content }}
-                    </div>
+                    <div class="project-collapsible">
+                        <div class="project-body">
+                            {{ .Content }}
+                        </div>
 
-                    {{- if .Params.image -}}
-                        {{- $res := resources.Get .Params.image -}}
-                        {{- if $res -}}
-                            {{- $targetW := default 360 .Params.image_width -}}
-                            {{- $retinaW := mul $targetW 2 -}}
-                            {{- $thumb := $res.Resize (printf "%dx webp q82" $retinaW) -}}
-                            {{- $full := $res -}}
-                            {{- if ne $res.MediaType.SubType "webp" -}}
-                                {{- $full = $res.Process "webp q88" -}}
+                        {{- if .Params.image -}}
+                            {{- $res := resources.Get .Params.image -}}
+                            {{- if $res -}}
+                                {{- $targetW := default 360 .Params.image_width -}}
+                                {{- $retinaW := mul $targetW 2 -}}
+                                {{- $thumb := $res.Resize (printf "%dx webp q82" $retinaW) -}}
+                                {{- $full := $res -}}
+                                {{- if ne $res.MediaType.SubType "webp" -}}
+                                    {{- $full = $res.Process "webp q88" -}}
+                                {{- end -}}
+                                <div class="project-media">
+                                    <img
+                                        class="lazy-img {{ default "project-zine" .Params.image_class }}"
+                                        src="{{ $thumb.RelPermalink }}"
+                                        data-zoom-src="{{ $full.RelPermalink }}"
+                                        alt="{{ default .Title .Params.image_alt }}"
+                                        width="{{ $targetW }}"
+                                        height="{{ div (mul $thumb.Height $targetW) $thumb.Width }}"
+                                        loading="lazy"
+                                        decoding="async"
+                                        title="Click to enlarge"
+                                    />
+                                </div>
+                            {{- else -}}
+                                <div class="project-media">
+                                    <img
+                                        class="lazy-img {{ default "project-zine" .Params.image_class }}"
+                                        src="{{ .Params.image }}"
+                                        alt="{{ default .Title .Params.image_alt }}"
+                                        {{ with .Params.image_width }}width="{{ . }}"{{ end }}
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </div>
                             {{- end -}}
+                        {{- end -}}
+
+                        {{- if .Params.video -}}
                             <div class="project-media">
-                                <img
-                                    class="lazy-img {{ default "project-zine" .Params.image_class }}"
-                                    src="{{ $thumb.RelPermalink }}"
-                                    data-zoom-src="{{ $full.RelPermalink }}"
-                                    alt="{{ default .Title .Params.image_alt }}"
-                                    width="{{ $targetW }}"
-                                    height="{{ div (mul $thumb.Height $targetW) $thumb.Width }}"
-                                    loading="lazy"
-                                    decoding="async"
-                                    title="Click to enlarge"
-                                />
-                            </div>
-                        {{- else -}}
-                            <div class="project-media">
-                                <img
-                                    class="lazy-img {{ default "project-zine" .Params.image_class }}"
-                                    src="{{ .Params.image }}"
-                                    alt="{{ default .Title .Params.image_alt }}"
-                                    {{ with .Params.image_width }}width="{{ . }}"{{ end }}
-                                    loading="lazy"
-                                    decoding="async"
-                                />
+                                <video
+                                    class="{{ default "" .Params.video_class }}"
+                                    controls
+                                    preload="none"
+                                    {{ with .Params.video_poster }}poster="{{ . }}"{{ end }}
+                                >
+                                    <source src="{{ .Params.video }}" type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
                             </div>
                         {{- end -}}
-                    {{- end -}}
 
-                    {{- if .Params.video -}}
-                        <div class="project-media">
-                            <video
-                                class="{{ default "" .Params.video_class }}"
-                                controls
-                                preload="none"
-                                {{ with .Params.video_poster }}poster="{{ . }}"{{ end }}
-                            >
-                                <source src="{{ .Params.video }}" type="video/mp4" />
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                    {{- end -}}
+                        {{- with .Params.footer_note -}}
+                            <div class="inner project-footer-note">
+                                <p>{{ . | safeHTML }}</p>
+                            </div>
+                        {{- end -}}
+                    </div>
 
-                    {{- with .Params.footer_note -}}
-                        <div class="inner project-footer-note">
-                            <p>{{ . | safeHTML }}</p>
-                        </div>
-                    {{- end -}}
+                    <div class="project-sliver">
+                        <button type="button" class="project-expand-btn" aria-expanded="false">
+                            <span class="expand-label">▼ Expand</span>
+                        </button>
+                    </div>
                 </article>
             {{- end -}}
         </div>

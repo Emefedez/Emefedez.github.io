@@ -37,9 +37,9 @@ center {
   border-right: 0px solid #12282f;  
   }
 
-/*Projects page expands on large monitors to fit the multi-column card grid*/
+/*Projects page expands on large monitors so the 2-column grid cards are wider*/
 .wrapper.wrapper-projects {
-  width: min(1380px, calc(100% - 24px));
+  width: min(1500px, calc(100% - 24px));
   }
   
 /*Contains main and sidebar divs*/
@@ -176,12 +176,12 @@ center {
   display: block;
   width: min(520px, 100%);
   height: auto;
-  margin: 0.75rem auto;
+  margin: 0.35rem auto;
   }
 
 .project-zine {
   display: block;
-  margin: 0.75rem auto;
+  margin: 0.35rem auto;
   }
 
 .project-demo {
@@ -208,31 +208,86 @@ center {
   top: 10px;
   }
 
-/* Unified responsive grid for projects on wide screens */
+/* Unified 2-column wide grid for projects on desktop */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 14px;
-  align-items: stretch;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
   margin-top: 10px;
   margin-bottom: 10px;
   }
 
 .project-grid .box.project-card {
+  --card-bg: #e2dcc1;
+  --card-border: #187b9b;
+  --card-accent: #0c5a72;
+  --card-sliver-bg: #d4ccb0;
   margin: 0;
-  padding: 8px 12px 12px;
+  padding: 8px 14px 0;
   display: flex;
   flex-direction: column;
+  position: relative;
   transition: box-shadow 0.25s ease, transform 0.2s ease;
   }
 
-.project-card .project-body {
-  flex: 1 1 auto;
+/* Compact collapsible region so cards stay short and uniform until expanded */
+.project-collapsible {
+  height: 215px;
+  max-height: 215px;
+  overflow: hidden;
+  position: relative;
+  transition: max-height 0.32s ease;
+  }
+
+/* Fade-out mask at the bottom of collapsed cards that overflow */
+.project-card:not(.is-expanded):not(.is-short) .project-collapsible::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, var(--card-bg));
+  pointer-events: none;
+  }
+
+.project-card.is-expanded .project-collapsible {
+  height: auto;
+  max-height: 2600px;
+  padding-bottom: 8px;
+  }
+
+/* Bottom sliver bar with expand/collapse button */
+.project-sliver {
+  margin: 4px -14px 0;
+  border-top: 1px solid var(--card-border);
+  background: var(--card-sliver-bg);
+  }
+
+.project-expand-btn {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--card-accent);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+.project-expand-btn:hover {
+  background: var(--card-border);
+  color: #ffffff;
   }
 
 .project-card .project-media {
-  margin-top: auto;
-  padding-top: 0.5rem;
+  padding-top: 0.15rem;
   text-align: center;
   }
 
@@ -292,7 +347,7 @@ center {
   }
 
 .project-card h2 img {
-  max-height: 62px;
+  max-height: 54px;
   width: auto;
   }
 
@@ -310,10 +365,14 @@ center {
    ========================================================================== */
 
 /* 1. Academic Notes: Sage Green */
-.box-notes, .swatch-notes {
-  background: #dce7dc;
-  border-top-color: #2b745b;
-  border-bottom-color: #2b745b;
+.box-notes {
+  --card-bg: #dce7dc;
+  --card-border: #2b745b;
+  --card-accent: #164d3c;
+  --card-sliver-bg: #cadbce;
+  background: var(--card-bg);
+  border-top-color: var(--card-border);
+  border-bottom-color: var(--card-border);
   }
 .swatch-notes { background: #2b745b; }
 .box-notes h2 a, .box-notes a, .box-notes .project-group-badge {
@@ -327,9 +386,13 @@ center {
 
 /* 2. Hardware & Game Projects: Warm Parchment / Teal (Classic Site Theme) */
 .box-hardware {
-  background: #e2dcc1;
-  border-top-color: #187b9b;
-  border-bottom-color: #187b9b;
+  --card-bg: #e2dcc1;
+  --card-border: #187b9b;
+  --card-accent: #0c5a72;
+  --card-sliver-bg: #d5ceb0;
+  background: var(--card-bg);
+  border-top-color: var(--card-border);
+  border-bottom-color: var(--card-border);
   }
 .swatch-hardware { background: #187b9b; }
 .box-hardware h2 a, .box-hardware a, .box-hardware .project-group-badge {
@@ -343,9 +406,13 @@ center {
 
 /* 3. Security Research: Muted Crimson / Terracotta */
 .box-security {
-  background: #ead9d7;
-  border-top-color: #8f3b3b;
-  border-bottom-color: #8f3b3b;
+  --card-bg: #ead9d7;
+  --card-border: #8f3b3b;
+  --card-accent: #612020;
+  --card-sliver-bg: #dec7c4;
+  background: var(--card-bg);
+  border-top-color: var(--card-border);
+  border-bottom-color: var(--card-border);
   }
 .swatch-security { background: #8f3b3b; }
 .box-security h2 a, .box-security a, .box-security .project-group-badge {
@@ -359,9 +426,13 @@ center {
 
 /* 4. Software Demos: Steel Ice Blue */
 .box-software {
-  background: #d7e3ec;
-  border-top-color: #34638a;
-  border-bottom-color: #34638a;
+  --card-bg: #d7e3ec;
+  --card-border: #34638a;
+  --card-accent: #1b3f5e;
+  --card-sliver-bg: #c4d5e2;
+  background: var(--card-bg);
+  border-top-color: var(--card-border);
+  border-bottom-color: var(--card-border);
   }
 .swatch-software { background: #34638a; }
 .box-software h2 a, .box-software a, .box-software .project-group-badge {
@@ -375,9 +446,13 @@ center {
 
 /* 5. Web Apps: Soft Lavender / Indigo */
 .box-webapps {
-  background: #e2ddf0;
-  border-top-color: #5e4b8b;
-  border-bottom-color: #5e4b8b;
+  --card-bg: #e2ddf0;
+  --card-border: #5e4b8b;
+  --card-accent: #38285c;
+  --card-sliver-bg: #d1cae5;
+  background: var(--card-bg);
+  border-top-color: var(--card-border);
+  border-bottom-color: var(--card-border);
   }
 .swatch-webapps { background: #5e4b8b; }
 .box-webapps h2 a, .box-webapps a, .box-webapps .project-group-badge {
@@ -399,7 +474,7 @@ center {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.65rem;
   }
 
 .tag {
@@ -541,5 +616,11 @@ img[data-zoom-src] {
   .box {
     padding: 5px 8px 8px;
     overflow-wrap: anywhere;
+    }
+  .project-grid .box.project-card {
+    padding: 8px 8px 0;
+    }
+  .project-sliver {
+    margin: 4px -8px 0;
     }
   }
