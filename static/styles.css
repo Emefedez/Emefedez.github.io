@@ -240,6 +240,7 @@ center {
   max-height: 215px;
   overflow: hidden;
   position: relative;
+  transition: max-height 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), padding-bottom 0.35s ease;
   }
 
 /* Fade-out mask at the bottom of collapsed cards that overflow */
@@ -255,8 +256,7 @@ center {
   }
 
 .project-card.is-expanded .project-collapsible {
-  max-height: none !important;
-  overflow: visible !important;
+  max-height: 2400px;
   padding-bottom: 8px;
   }
 

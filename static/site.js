@@ -74,14 +74,30 @@
   document.querySelectorAll(".project-card").forEach((card) => {
     const btn = card.querySelector(".project-expand-btn");
     const label = card.querySelector(".expand-label");
-    if (!btn || !label) return;
+    const collapsible = card.querySelector(".project-collapsible");
+    if (!btn || !label || !collapsible) return;
 
     btn.addEventListener("click", () => {
+      const startHeight = collapsible.clientHeight;
       const expanded = card.classList.toggle("is-expanded");
       btn.setAttribute("aria-expanded", expanded ? "true" : "false");
       label.textContent = expanded ? "▲ Collapse" : "▼ Expand";
-      if (!expanded) {
+
+      if (expanded) {
+        collapsible.style.maxHeight = startHeight + "px";
+        void collapsible.offsetHeight;
+        collapsible.style.maxHeight = (collapsible.scrollHeight + 16) + "px";
+      } else {
+        collapsible.style.maxHeight = collapsible.scrollHeight + "px";
+        void collapsible.offsetHeight;
+        collapsible.style.maxHeight = "215px";
         updateCardOverflow();
+      }
+    });
+
+    collapsible.addEventListener("transitionend", (e) => {
+      if (e.propertyName === "max-height" && !card.classList.contains("is-expanded")) {
+        collapsible.style.maxHeight = "";
       }
     });
   });
