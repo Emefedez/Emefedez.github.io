@@ -223,6 +223,9 @@ center {
   --card-border: #187b9b;
   --card-accent: #0c5a72;
   --card-sliver-bg: #d4ccb0;
+  background: var(--card-bg);
+  border-top-color: var(--card-border);
+  border-bottom-color: var(--card-border);
   margin: 0;
   padding: 8px 14px 0;
   min-height: 380px;
@@ -370,11 +373,11 @@ center {
    ========================================================================== */
 
 /* 1. Academic Notes: Sage Green */
-.box-notes {
-  --card-bg: #dce7dc;
+.project-grid .box.project-card.box-notes, .box-notes {
+  --card-bg: #d4e6d5;
   --card-border: #2b745b;
   --card-accent: #164d3c;
-  --card-sliver-bg: #cadbce;
+  --card-sliver-bg: #c1d8c3;
   background: var(--card-bg);
   border-top-color: var(--card-border);
   border-bottom-color: var(--card-border);
@@ -390,7 +393,7 @@ center {
   }
 
 /* 2. Hardware & Game Projects: Warm Parchment / Teal (Classic Site Theme) */
-.box-hardware {
+.project-grid .box.project-card.box-hardware, .box-hardware {
   --card-bg: #e2dcc1;
   --card-border: #187b9b;
   --card-accent: #0c5a72;
@@ -410,11 +413,11 @@ center {
   }
 
 /* 3. Security Research: Muted Crimson / Terracotta */
-.box-security {
-  --card-bg: #ead9d7;
+.project-grid .box.project-card.box-security, .box-security {
+  --card-bg: #ebd3cf;
   --card-border: #8f3b3b;
   --card-accent: #612020;
-  --card-sliver-bg: #dec7c4;
+  --card-sliver-bg: #dfc0bb;
   background: var(--card-bg);
   border-top-color: var(--card-border);
   border-bottom-color: var(--card-border);
@@ -430,11 +433,11 @@ center {
   }
 
 /* 4. Software Demos: Steel Ice Blue */
-.box-software {
-  --card-bg: #d7e3ec;
+.project-grid .box.project-card.box-software, .box-software {
+  --card-bg: #d1e1ed;
   --card-border: #34638a;
   --card-accent: #1b3f5e;
-  --card-sliver-bg: #c4d5e2;
+  --card-sliver-bg: #bed2e2;
   background: var(--card-bg);
   border-top-color: var(--card-border);
   border-bottom-color: var(--card-border);
@@ -450,11 +453,11 @@ center {
   }
 
 /* 5. Web Apps: Soft Lavender / Indigo */
-.box-webapps {
-  --card-bg: #e2ddf0;
+.project-grid .box.project-card.box-webapps, .box-webapps {
+  --card-bg: #dfd7f2;
   --card-border: #5e4b8b;
   --card-accent: #38285c;
-  --card-sliver-bg: #d1cae5;
+  --card-sliver-bg: #cec3e8;
   background: var(--card-bg);
   border-top-color: var(--card-border);
   border-bottom-color: var(--card-border);
