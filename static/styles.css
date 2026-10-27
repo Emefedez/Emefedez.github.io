@@ -27,25 +27,20 @@ center {
   text-align: center;
   }
   
-/*Contains everything*/
-.wrapper {
-  width: min(1150px, calc(100% - 24px));
+/*Contains everything — identical width on Landing and Projects so side borders never shift*/
+.wrapper, .wrapper.wrapper-projects {
+  width: min(1260px, calc(100% - 24px));
   background: #12282f;
   margin: 0 auto;
   top: 0;
   border-left: 0px solid #12282f;
   border-right: 0px solid #12282f;  
   }
-
-/*Projects page expands on large monitors so the 2-column grid cards are wider*/
-.wrapper.wrapper-projects {
-  width: min(1500px, calc(100% - 24px));
-  }
   
 /*Contains main and sidebar divs*/
 .wrapper-2 {
   display: grid;
-  grid-template-columns: 200px minmax(0, 710px) 200px;
+  grid-template-columns: 200px minmax(0, 1fr) 200px;
   gap: 10px;
   justify-content: center;
   align-items: start;
