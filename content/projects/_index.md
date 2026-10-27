@@ -7,4 +7,4 @@ sidebar_gif: "/images/GIFs/computer_surfing_lc.gif"
 sidebar_gif_alt: "Surfing the web"
 ---
 
-Click a project title to visit its repository. Each project is labelled by its focus and tools. Adjacent cards share the same background tint when they belong to the same project group.
+**Click on a project** title to visit its **repository**. Each project is labelled by its focus and tools.
