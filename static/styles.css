@@ -10,6 +10,10 @@ IF YOU WANT THE v2 CSS (i.e. NOT THE ORIGINAL BUT NOT THE CURRENT WIP REVAMP), G
 
 ***/
 
+html {
+  scrollbar-gutter: stable;
+  }
+
 body {
   background: #0c5a72;
   color: white;
@@ -27,9 +31,9 @@ center {
   text-align: center;
   }
   
-/*Contains everything — identical width on Landing and Projects so side borders never shift*/
+/*Contains everything — exact 1150px width on all pages so side borders never change*/
 .wrapper, .wrapper.wrapper-projects {
-  width: min(1260px, calc(100% - 24px));
+  width: min(1150px, calc(100% - 24px));
   background: #12282f;
   margin: 0 auto;
   top: 0;
@@ -40,7 +44,7 @@ center {
 /*Contains main and sidebar divs*/
 .wrapper-2 {
   display: grid;
-  grid-template-columns: 200px minmax(0, 1fr) 200px;
+  grid-template-columns: 200px minmax(0, 710px) 200px;
   gap: 10px;
   justify-content: center;
   align-items: start;
@@ -236,7 +240,6 @@ center {
   max-height: 215px;
   overflow: hidden;
   position: relative;
-  transition: max-height 0.28s ease;
   }
 
 /* Fade-out mask at the bottom of collapsed cards that overflow */
@@ -252,7 +255,8 @@ center {
   }
 
 .project-card.is-expanded .project-collapsible {
-  max-height: 3200px;
+  max-height: none !important;
+  overflow: visible !important;
   padding-bottom: 8px;
   }
 
@@ -494,16 +498,7 @@ center {
   margin: 0.35rem auto 0.6rem;
   }
 
-/* Progressive lazy-image fade-in & zoom cursor */
-.lazy-img {
-  opacity: 0;
-  transition: opacity 0.22s ease-in;
-  }
-
-.lazy-img.is-loaded {
-  opacity: 1;
-  }
-
+/* Zoom cursor on expandable project images */
 img[data-zoom-src] {
   cursor: zoom-in;
   }
