@@ -1,4 +1,37 @@
 (() => {
+  // 0. Animated dancing banana tab icon (Firefox animates GIF favicons natively;
+  //    Chromium/Brave/Vivaldi need canvas frame cycling via ImageDecoder)
+  const faviconEl = document.getElementById("site-favicon");
+  if (faviconEl && "ImageDecoder" in window && !/Firefox\//i.test(navigator.userAgent)) {
+    fetch("/images/GIFs/dancing-banana.gif")
+      .then((r) => r.arrayBuffer())
+      .then(async (buf) => {
+        const decoder = new ImageDecoder({ data: buf, type: "image/gif" });
+        await decoder.tracks.ready;
+        const count = decoder.tracks.selectedTrack.frameCount;
+        if (!count || count < 2) return;
+        const canvas = document.createElement("canvas");
+        canvas.width = 32;
+        canvas.height = 32;
+        const ctx = canvas.getContext("2d");
+        const frames = [];
+        for (let i = 0; i < count; i++) {
+          const { image } = await decoder.decode({ frameIndex: i });
+          ctx.clearRect(0, 0, 32, 32);
+          ctx.drawImage(image, 0, 0, 32, 32);
+          frames.push(canvas.toDataURL("image/png"));
+          image.close();
+        }
+        let idx = 0;
+        window.setInterval(() => {
+          faviconEl.type = "image/png";
+          faviconEl.href = frames[idx];
+          idx = (idx + 1) % frames.length;
+        }, 110);
+      })
+      .catch(() => {});
+  }
+
   // 1. Live real-time date on the landing page ("Life is worth living at least as of... <date>")
   const liveDateEl = document.getElementById("live-date");
   if (liveDateEl) {
