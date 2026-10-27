@@ -11,7 +11,6 @@ tags:
   - "Reverse Engineering"
   - "Rust"
   - "WebAssembly"
-  - "TODO"
 ---
 
 A reader and editor for Noteful notes that runs entirely in your browser, on phone or computer. You can use local files or Google Drive Oauth to access your notes.
