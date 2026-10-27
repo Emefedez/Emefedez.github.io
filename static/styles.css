@@ -237,12 +237,11 @@ center {
 
 /* Compact collapsible region so cards stay short and uniform until expanded */
 .project-collapsible {
-  flex: 1 0 215px;
   min-height: 215px;
   max-height: 215px;
   overflow: hidden;
   position: relative;
-  transition: max-height 0.32s ease;
+  transition: max-height 0.28s ease;
   }
 
 /* Fade-out mask at the bottom of collapsed cards that overflow */
@@ -258,8 +257,7 @@ center {
   }
 
 .project-card.is-expanded .project-collapsible {
-  height: auto;
-  max-height: 2600px;
+  max-height: 3200px;
   padding-bottom: 8px;
   }
 
