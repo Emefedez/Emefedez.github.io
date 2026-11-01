@@ -1,6 +1,6 @@
 ---
 title: "NoteComplete"
-repo_url: "https://github.com/Emefedez/NoteComplete"
+repo_url: "https://emefedez.github.io/NoteComplete/"
 logo: "https://github.com/Emefedez/NoteComplete/raw/main/docs/images/banner.svg"
 category: "Web Apps"
 category_short: "Web Apps"
@@ -13,7 +13,7 @@ tags:
   - "WebAssembly"
 ---
 
-A reader and editor for Noteful notes that runs entirely in your browser, on phone or computer. You can use local files or Google Drive Oauth to access your notes.
+A reader and editor for Noteful and other note-taking formats that runs entirely in your browser, on phone or computer. You can use local files or Google Drive Oauth to access your notes.
 
 Audio-to-text, OCR, automatic-quizzes and more are some of the utilities this tool adds over base Noteful.
 
