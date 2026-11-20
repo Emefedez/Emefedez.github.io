@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 76" width="360" height="76" role="img" aria-label="BunkerStock">
+  <rect x="1.5" y="1.5" width="357" height="73" rx="14" fill="#111312" stroke="#22C55E" stroke-opacity="0.55" stroke-width="2"/>
+  <g transform="translate(14 10) scale(2.3333)">
+    <path fill="#191C1A" stroke="#22C55E" stroke-width="1.7" stroke-linejoin="round"
+          d="M12,2.4 L19.6,5.4 V11.5 C19.6,16.5 16.3,20.3 12,22 C7.7,20.3 4.4,16.5 4.4,11.5 V5.4 Z"/>
+    <path fill="#16291D" d="M12,4.2 L6.2,6.5 V11.5 C6.2,15.3 8.6,18.4 12,20 Z"/>
+    <circle cx="12" cy="12" r="1.25" fill="#FACC15"/>
+    <path fill="#FACC15" d="M10.9,10.3 L8.7,6.8 A4.8,4.8 0 0,0 7,12 L10,12 A2,2 0 0,1 10.9,10.3 Z"/>
+    <path fill="#FACC15" d="M13.1,10.3 L15.3,6.8 A4.8,4.8 0 0,1 17,12 L14,12 A2,2 0 0,0 13.1,10.3 Z"/>
+    <path fill="#FACC15" d="M10.9,13.7 L9.2,16.7 A4.8,4.8 0 0,0 14.8,16.7 L13.1,13.7 A2,2 0 0,1 10.9,13.7 Z"/>
+  </g>
+  <text x="82" y="48" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="31" font-weight="800" letter-spacing="1.2">
+    <tspan fill="#EAEFEA">BUNKER</tspan><tspan fill="#22C55E">STOCK</tspan>
+  </text>
+</svg>
