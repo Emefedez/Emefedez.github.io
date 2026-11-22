@@ -2,10 +2,10 @@
 title: "NoteComplete"
 repo_url: "https://emefedez.github.io/NoteComplete/"
 logo: "https://github.com/Emefedez/NoteComplete/raw/main/docs/images/banner.svg"
-category: "Web Apps"
-category_short: "Web Apps"
-category_id: "webapps"
-category_weight: 5
+category: "Academic Tools"
+category_short: "Academic Tools"
+category_id: "academic"
+category_weight: 1
 weight: 1
 tags:
   - "Reverse Engineering"

@@ -369,7 +369,8 @@ center {
    Category Color Tints (Adjacent cards in the same group share their tint)
    ========================================================================== */
 
-/* 1. Academic Notes: Sage Green */
+/* 1. Academic Tools / Notes: Sage Green */
+.project-grid .box.project-card.box-academic, .box-academic,
 .project-grid .box.project-card.box-notes, .box-notes {
   --card-bg: #d4e6d5;
   --card-border: #2b745b;
@@ -379,11 +380,12 @@ center {
   border-top-color: var(--card-border);
   border-bottom-color: var(--card-border);
   }
-.swatch-notes { background: #2b745b; }
+.swatch-academic, .swatch-notes { background: #2b745b; }
+.box-academic h2 a, .box-academic a, .box-academic .project-group-badge,
 .box-notes h2 a, .box-notes a, .box-notes .project-group-badge {
   color: #164d3c;
   }
-.box-notes .tag {
+.box-academic .tag, .box-notes .tag {
   border-color: #2b745b;
   background: #edf5ef;
   color: #164d3c;

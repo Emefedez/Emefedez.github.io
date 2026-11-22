@@ -4,11 +4,11 @@ link_title: "R Commander Studio"
 repo_url: "https://github.com/Emefedez/r-commander-studio"
 logo: "/images/static/logos/projects/r-commander-studio-header.svg"
 logo_alt: "R Commander Studio"
-category: "Software Demos"
-category_short: "Software Demo"
-category_id: "software"
-category_weight: 4
-weight: 1
+category: "Academic Tools"
+category_short: "Academic Tools"
+category_id: "academic"
+category_weight: 1
+weight: 2
 tags:
   - "R"
   - "Electron"
